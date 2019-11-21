@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="login_horizontal_margin">34dp</dimen>
+    <dimen name="login_app_name">40sp</dimen>
+</resources>

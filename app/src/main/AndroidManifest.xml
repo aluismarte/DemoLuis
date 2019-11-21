@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.AppActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.PrivacyActivity" />
+        <activity android:name=".ui.IntroActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

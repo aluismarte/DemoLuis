@@ -16,7 +16,8 @@ android {
     }
     buildTypes {
         debug {
-            minifyEnabled false // Cambiar al modo true para ver como se reduce el peso de la app en el release.
+            minifyEnabled false
+            // Cambiar al modo true para ver como se reduce el peso de la app en el release.
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
@@ -29,6 +30,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Material
+    implementation 'com.google.android.material:material:1.0.0'
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.2.2"
     // Gson
