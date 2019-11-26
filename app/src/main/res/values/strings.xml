@@ -3,4 +3,16 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="i_accept">I Accept</string>
+    <string name="ok">OK</string>
+
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="start">Start</string>
+
+    <string name="slide_intro_1_title">Secure</string>
+    <string name="slide_intro_1_description">Implement last tecnologies to be secure</string>
+
+    <string name="slide_intro_2_title">Fast</string>
+    <string name="slide_intro_2_description">Gast like a lighting</string>
 </resources>

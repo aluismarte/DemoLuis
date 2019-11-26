@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="dot_dark_screen">#222222</color>
+    <color name="dot_light_screen">#efefef</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="yellow">#FFFF33</color>
+    <color name="blue">#87CEFA</color>
+
 </resources>
