@@ -42,7 +42,7 @@ public class LazyDemoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         if (items.get(position) == null) {
             if (!loading) {
-                new DemoTask(new DemoRequest(position - 1), this).execute();
+                new DemoTask(null, new DemoRequest(position - 1), this).execute();
                 loading = true;
             }
             return 1;

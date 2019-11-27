@@ -13,6 +13,8 @@
         android:layout_gravity="center"
         android:text="@string/load" />
 
+    <include layout="@layout/lazy_load" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExample"
         android:layout_width="match_parent"

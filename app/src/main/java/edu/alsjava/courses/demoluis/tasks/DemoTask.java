@@ -3,11 +3,13 @@ package edu.alsjava.courses.demoluis.tasks;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.alsjava.courses.demoluis.model.Example;
+import edu.alsjava.courses.demoluis.model.Operation;
 import edu.alsjava.courses.demoluis.model.RetrieveDemo;
 import edu.alsjava.courses.demoluis.model.network.request.DemoRequest;
 import edu.alsjava.courses.demoluis.model.network.response.DemoResponse;
@@ -17,17 +19,28 @@ import edu.alsjava.courses.demoluis.model.network.response.DemoResponse;
  */
 public class DemoTask extends AsyncTask<Void, Void, DemoResponse> {
 
+    private Operation operation;
     private DemoRequest demoRequest;
     private RetrieveDemo retrieveDemo;
 
-    public DemoTask(@NonNull DemoRequest demoRequest, @NonNull RetrieveDemo retrieveDemo) {
+    public DemoTask(@Nullable Operation operation, @NonNull DemoRequest demoRequest, @NonNull RetrieveDemo retrieveDemo) {
+        this.operation = operation;
         this.demoRequest = demoRequest;
         this.retrieveDemo = retrieveDemo;
     }
 
     @Override
     protected void onPostExecute(DemoResponse demoResponse) {
-        retrieveDemo.history(demoRequest.getOffset(), demoResponse.getTotal(), demoResponse.getExamples());
+        if (demoResponse != null) {
+            if (operation != null) {
+                operation.operation(true);
+            }
+            retrieveDemo.history(demoRequest.getOffset(), demoResponse.getTotal(), demoResponse.getExamples());
+        } else {
+            if (operation != null) {
+                operation.operation(false);
+            }
+        }
     }
 
     @Override
