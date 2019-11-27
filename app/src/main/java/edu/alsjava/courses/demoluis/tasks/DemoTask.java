@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import edu.alsjava.courses.demoluis.model.Example;
 import edu.alsjava.courses.demoluis.model.Operation;
@@ -57,6 +58,11 @@ public class DemoTask extends AsyncTask<Void, Void, DemoResponse> {
             }
         }
         demoResponse.setExamples(examples);
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
         return demoResponse;
     }
 }
