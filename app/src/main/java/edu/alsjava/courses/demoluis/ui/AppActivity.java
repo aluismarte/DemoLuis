@@ -1,5 +1,6 @@
 package edu.alsjava.courses.demoluis.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -40,6 +41,9 @@ public class AppActivity extends AppCompatActivity implements Operation {
 
         llLoading = findViewById(R.id.llLoading);
         tvLoading = findViewById(R.id.tvLoading);
+
+        AppCompatButton btnGlide = findViewById(R.id.btnGlide);
+        btnGlide.setOnClickListener(view -> startActivity(new Intent(this, GlideActivity.class)));
 
         AppCompatButton btnLoad = findViewById(R.id.btnLoad);
         btnLoad.setOnClickListener(view -> loadData());
