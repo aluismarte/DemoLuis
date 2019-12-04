@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Patrón Singleton
+ * <p>
  * Los dispositivos deben ser configurados a mano para el OS para que puedan verse en la aplicacion.
  * <p>
  * Esta clase no maneja el Bluetooth completamente, prenderlo y apagarlo es responsabilidad del usuario.
