@@ -1,4 +1,4 @@
-package edu.alsjava.courses.demoluis.utils;
+package edu.alsjava.courses.demoluis.utils.lifecycle;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,12 +11,12 @@ import androidx.lifecycle.OnLifecycleEvent;
 /**
  * Created by aluis on 12/2/19.
  */
-public class CheckPrinterConnection implements LifecycleObserver {
+public class LifeCycleDemo implements LifecycleObserver {
 
     private Context context;
     private String activityName;
 
-    public CheckPrinterConnection(Context context, String activityName) {
+    public LifeCycleDemo(Context context, String activityName) {
         this.context = context;
         this.activityName = activityName;
     }

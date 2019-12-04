@@ -1,10 +1,5 @@
 package edu.alsjava.courses.demoluis.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.lifecycle.LifecycleObserver;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -14,21 +9,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.bumptech.glide.Glide;
 
 import edu.alsjava.courses.demoluis.R;
 import edu.alsjava.courses.demoluis.model.Seasons;
-import edu.alsjava.courses.demoluis.utils.CheckPrinterConnection;
+import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleCheckBluetooth;
+import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleDemo;
 
 public class GlideActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_glide);
 
-        getLifecycle().addObserver(new CheckPrinterConnection(this, "GlideActivity"));
+        getLifecycle().addObserver(new LifeCycleCheckBluetooth(this, getClass().getName()));
+        getLifecycle().addObserver(new LifeCycleDemo(this, getClass().getName()));
 
         AppCompatImageView ivGif = findViewById(R.id.ivGif);
 
@@ -67,13 +67,7 @@ public class GlideActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
-
-    private void printDat (@Seasons.Season int day) {
+    private void printDat(@Seasons.Season int day) {
         Toast.makeText(this, "Day: " + day, Toast.LENGTH_SHORT).show();
 
     }
