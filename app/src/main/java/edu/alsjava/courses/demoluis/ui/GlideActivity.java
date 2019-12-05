@@ -16,7 +16,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.bumptech.glide.Glide;
 
 import edu.alsjava.courses.demoluis.R;
+import edu.alsjava.courses.demoluis.domain.Author;
 import edu.alsjava.courses.demoluis.model.Seasons;
+import edu.alsjava.courses.demoluis.repository.AuthorRepository;
+import edu.alsjava.courses.demoluis.utils.Constants;
 import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleCheckBluetooth;
 import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleDemo;
 
@@ -34,6 +37,12 @@ public class GlideActivity extends AppCompatActivity {
 
         Glide.with(this).asGif().load(R.raw.cat).into(ivGif);
         ivGif.setVisibility(View.VISIBLE);
+
+        AuthorRepository authorRepository = Constants.get().demoLuisDB.getAuthorRepository();
+        Author author = new Author();
+        author.setName("Steven King");
+        author.setDescription("King of Horror");
+        authorRepository.insert(author);
 
         int dayOfWeek = 1; // We dont know!
         Toast.makeText(this, "Day: " + dayOfWeek, Toast.LENGTH_SHORT).show();
