@@ -47,9 +47,10 @@ public class GlideActivity extends AppCompatActivity {
         int dayOfWeek = 1; // We dont know!
         Toast.makeText(this, "Day: " + dayOfWeek, Toast.LENGTH_SHORT).show();
 
-        int dayOfWeek2 = Seasons.SPRING; // Good!
+//        int dayOfWeek2 = Seasons.SPRING; // Good!
 
         printDat(Seasons.SUMMER);
+        printDat(Seasons.SPRING);
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {

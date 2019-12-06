@@ -14,16 +14,16 @@ class PrivacyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_privacy)
-        tvPrivacy.setText(loadPrivacy(resources.openRawResource(R.raw.privacy)))
-        switchAccept.setOnCheckedChangeListener { buttonView, isChecked ->
-                btnOK.isEnabled  = isChecked
+        tvPrivacy.text = loadPrivacy(resources.openRawResource(R.raw.privacy))
+        switchAccept.setOnCheckedChangeListener { _, isChecked ->
+            btnOK.isEnabled = isChecked
         }
         btnOK.setOnClickListener {
             openLogin()
         }
     }
 
-    fun openLogin() {
+    private fun openLogin() {
         val sharedPreferencesTool = SharedPreferencesTool(this)
         sharedPreferencesTool.showPolicy(false)
         val intent = Intent(this, LoginActivity::class.java)
@@ -35,11 +35,9 @@ class PrivacyActivity : AppCompatActivity() {
     private fun loadPrivacy(inputStream: InputStream): String {
         val reader = BufferedReader(inputStream.reader())
         var content = ""
-        try {
+        reader.use {
             content = reader.readText()
-        } finally {
-            reader.close()
         }
-        return content;
+        return content
     }
 }
