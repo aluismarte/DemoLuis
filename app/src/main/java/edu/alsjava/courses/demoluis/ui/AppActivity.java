@@ -1,17 +1,23 @@
 package edu.alsjava.courses.demoluis.ui;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.linecorp.apng.ApngDrawable;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +27,7 @@ import edu.alsjava.courses.demoluis.model.Example;
 import edu.alsjava.courses.demoluis.model.Operation;
 import edu.alsjava.courses.demoluis.model.network.request.DemoRequest;
 import edu.alsjava.courses.demoluis.tasks.DemoTask;
+import edu.alsjava.courses.demoluis.tasks.LoadAPNG2;
 
 public class AppActivity extends AppCompatActivity implements Operation {
 
@@ -30,6 +37,7 @@ public class AppActivity extends AppCompatActivity implements Operation {
 
     private LinearLayoutCompat llLoading;
     private AppCompatTextView tvLoading;
+    private AppCompatImageView ivLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,9 @@ public class AppActivity extends AppCompatActivity implements Operation {
 
         llLoading = findViewById(R.id.llLoading);
         tvLoading = findViewById(R.id.tvLoading);
+        ivLoading = findViewById(R.id.ivLoading);
+
+        new LoadAPNG2(this).execute();
 
         AppCompatButton btnGlide = findViewById(R.id.btnGlide);
         btnGlide.setOnClickListener(view -> startActivity(new Intent(this, GlideActivity.class)));
@@ -68,6 +79,43 @@ public class AppActivity extends AppCompatActivity implements Operation {
             llLoading.setVisibility(View.GONE);
         } else {
             tvLoading.setText(R.string.error_loading);
+        }
+    }
+
+    public AppCompatImageView getIvLoading() {
+        return ivLoading;
+    }
+
+    // Ejemplo dentro sin warning, solo demostrativo para en caso de que no se requiera crear una clase y archivo independiente.
+    public static class LoadAPNG extends AsyncTask<Void, Void, ApngDrawable> {
+
+        private WeakReference<AppActivity> appActivityWeakReference;
+
+        LoadAPNG(AppActivity appActivity) {
+            appActivityWeakReference = new WeakReference<>(appActivity);
+
+        }
+
+        @Override
+        protected void onPostExecute(ApngDrawable apngDrawable) {
+            AppActivity appActivity = appActivityWeakReference.get();
+            if (appActivity != null && !appActivity.isFinishing()) {
+                if (apngDrawable != null) {
+                    Glide.with(appActivity).load(apngDrawable).into(appActivity.getIvLoading());
+                }
+            }
+        }
+
+        @Override
+        protected ApngDrawable doInBackground(Void... voids) {
+            try {
+                AppActivity appActivity = appActivityWeakReference.get();
+                if (appActivity != null && !appActivity.isFinishing()) {
+                    return ApngDrawable.Companion.decode(appActivity.getResources(), R.raw.cat, null, null);
+                }
+            } catch (Exception ignored) {
+            }
+            return null;
         }
     }
 }

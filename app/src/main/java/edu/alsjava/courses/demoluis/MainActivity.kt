@@ -3,7 +3,9 @@ package edu.alsjava.courses.demoluis
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.scottyab.rootbeer.RootBeer
 import edu.alsjava.courses.demoluis.ui.AppActivity
 import edu.alsjava.courses.demoluis.ui.IntroActivity
 import edu.alsjava.courses.demoluis.ui.LoginActivity
@@ -27,6 +29,10 @@ class MainActivity : AppCompatActivity() {
                 openApp()
             }
         }, 1200)
+        val rootBeer = RootBeer(this)
+        if (rootBeer.isRootedWithoutBusyBoxCheck) {
+            Toast.makeText(this, "You are a GOD!", Toast.LENGTH_LONG).show()
+        }
     }
 
     fun openIntro() {
