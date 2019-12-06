@@ -1,6 +1,12 @@
 # Demo Luis
 Proyecto demo de las implementaciones hechas en el curso taller demostrativo de android básico 2019
 
+# Temas pendientes.
+ - Notificaciones
+ - Manejo de alarmas
+ - Permissions
+ - Animaciones
+
 # ESC/POS Language to programing printer (hand made, no drivers)
 http://content.epson.de/fileadmin/content/files/RSD/downloads/escpos.pdf
 
