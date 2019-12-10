@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="load">Cargado</string>
+    <string name="loading">Cargando</string>
+    <string name="ok">OK</string>
+    <string name="password">Contraseña</string>
+    <string name="next">Siguiente</string>
+    <string name="login">Login</string>
+    <string name="i_accept">Acepto</string>
+    <string name="glide">Glide</string>
+    <string name="error_loading">Error cargando data del servidor</string>
+    <string name="skip">Saltar</string>
+    <string name="slide_intro_2_title">Rápido</string>
+    <string name="start">Iniciar</string>
+    <string name="username">Usuario</string>
+    <string name="turn_on_your_bluetooth">Encender tu Bluetooth!</string>
+    <string name="slide_intro_2_description">Rápido como un rayo</string>
+    <string name="read_contacts">Leer contactos</string>
+    <string name="slide_intro_1_description">Implementa las ultima tecnologías en seguridad</string>
+    <string name="slide_intro_1_title">Seguro</string>
+</resources>

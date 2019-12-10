@@ -26,4 +26,13 @@
         android:layout_gravity="center"
         android:enabled="false"
         android:text="@string/ok" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnReadContacts"
+        android:layout_width="wrap_content"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/read_contacts" />
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,7 +4,6 @@ Proyecto demo de las implementaciones hechas en el curso taller demostrativo de 
 # Temas pendientes.
  - Notificaciones
  - Manejo de alarmas
- - Permissions
  - Animaciones
 
 # ESC/POS Language to programing printer (hand made, no drivers)
