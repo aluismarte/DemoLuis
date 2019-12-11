@@ -24,6 +24,9 @@ public interface BookRepository {
     @Query("SELECT * FROM books WHERE id = :id")
     Book findById(Long id);
 
+    @Query("SELECT * FROM books WHERE author = :author")
+    List<Book> findAllByAuthor(Long author);
+
     @Query("SELECT * FROM books LIMIT :limit,:offset")
     List<Book> findAllBy(int limit, int offset);
 
