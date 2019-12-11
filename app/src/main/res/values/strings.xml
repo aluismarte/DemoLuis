@@ -3,7 +3,7 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="i_accept">I Accept</string>
+    <string name="i_accept" translatable="false">I Accept</string>
     <string name="ok">OK</string>
 
     <string name="next">Next</string>
@@ -22,4 +22,6 @@
     <string name="glide">Glide</string>
     <string name="turn_on_your_bluetooth">Turn on your Bluetooth!</string>
     <string name="read_contacts">Read Contacts</string>
+
+    <string name="network_state">Network State</string>
 </resources>

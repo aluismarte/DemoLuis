@@ -1,9 +1,6 @@
 package edu.alsjava.courses.demoluis.domain
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
-import androidx.room.TypeConverters
+import androidx.room.*
 import edu.alsjava.courses.demoluis.model.BookType
 import edu.alsjava.courses.demoluis.utils.db.converters.BigDecimalConverter
 import edu.alsjava.courses.demoluis.utils.db.converters.BookTypeConverter
@@ -28,6 +25,5 @@ class Book {
     @TypeConverters(BigDecimalConverter::class)
     var price: BigDecimal? = null
 
-    @Relation(parentColumn = "id", entityColumn = "author", entity = Author::class)
-    var author: Author? = null // Tengo una relacion opcional, puede ser null
+//    var author: Author? = null // Tengo una relacion opcional, puede ser null
 }
