@@ -1,5 +1,6 @@
 package edu.alsjava.courses.demoluis.repository;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -14,6 +15,7 @@ import edu.alsjava.courses.demoluis.domain.Book;
 /**
  * Created by aluis on 12/4/19.
  */
+@Dao
 public interface BookRepository {
 
     @Query("SELECT COUNT(id) FROM books")
@@ -23,7 +25,7 @@ public interface BookRepository {
     Book findById(Long id);
 
     @Query("SELECT * FROM books WHERE author = :author")
-    List<Book> findAllByAuthor(Author author);
+    List<Book> findAllByAuthor(long author);
 
     @Query("SELECT * FROM books LIMIT :limit,:offset")
     List<Book> findAllBy(int limit, int offset);

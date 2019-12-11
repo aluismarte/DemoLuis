@@ -1,6 +1,8 @@
 package edu.alsjava.courses.demoluis.ui;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -24,6 +28,8 @@ import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleCheckBluetooth;
 import edu.alsjava.courses.demoluis.utils.lifecycle.LifeCycleDemo;
 
 public class GlideActivity extends AppCompatActivity {
+
+    private static final int NOTIFICATION_NETWORK = 65431;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +72,24 @@ public class GlideActivity extends AppCompatActivity {
                     } else {
                         connected = false;
                     }
-                    Toast.makeText(GlideActivity.this, "Network?: " + connected, Toast.LENGTH_LONG).show();
+
+                    // Channel ID is the group, multiple notification on the same ChannelID going to be together.
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(GlideActivity.this, "Network")
+                            .setSmallIcon(R.drawable.ic_network_check_black_24dp)
+                            .setContentTitle(getString(R.string.network_state))
+                            .setContentText("Much longer text that cannot fit one line...")
+                            .setStyle(new NotificationCompat.BigTextStyle().bigText("Much longer text that cannot fit one line..."))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                    Intent intent = new Intent(GlideActivity.this, AppActivity.class); // App default is AppActivity, open when click on notification
+                    intent.setAction("lalala.my.pretty.action"); // Action define on manifest
+                    intent.putExtra("state", connected); // Data to process on broadcast
+
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(GlideActivity.this, 1002, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.addAction(R.drawable.ic_save_black_24dp, getString(R.string.ok), pendingIntent);
+
+                    NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(GlideActivity.this);
+                    notificationManagerCompat.notify(NOTIFICATION_NETWORK, builder.build());
                 }
 
                 @Override

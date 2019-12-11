@@ -1,10 +1,15 @@
 package edu.alsjava.courses.demoluis.ui;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -65,12 +70,39 @@ public class AppActivity extends AppCompatActivity implements Operation {
         rvExample.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         new DemoTask(this, new DemoRequest(0), demoAdapter).execute();
+
+        Intent intent = new Intent(this, AppActivity.class);
+        intent.putExtra("data", "Hola, soy la alarma");
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 15000, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, 20000, pendingIntent);
+        }
     }
 
     private void loadData() {
         data.add(new Example("Uva", "https://www.herbazest.com/imgs/d/3/d/354166/uva.png"));
         data.add(new Example("Naranja", "https://naranjasamparo.net/81-large_default/naranjas-zumo-extra-.jpg"));
         demoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 15000:
+                if (data != null) {
+                    String message = data.getStringExtra("data");
+                    if (message == null) {
+                        message = "";
+                    }
+                    Toast.makeText(this, String.format("Tengo: %s", message), Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
