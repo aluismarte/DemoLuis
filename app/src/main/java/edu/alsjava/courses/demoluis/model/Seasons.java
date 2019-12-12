@@ -17,5 +17,6 @@ public class Seasons { // Siempre uso el plural aqui
 
     @IntDef({WINTER, SPRING, SUMMER, FALL})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Season {} // esta parte siempre va en singular
+    public @interface Season {
+    } // esta parte siempre va en singular
 }

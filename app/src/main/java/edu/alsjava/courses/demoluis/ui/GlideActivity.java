@@ -36,6 +36,8 @@ public class GlideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_glide);
 
+        overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+
         getLifecycle().addObserver(new LifeCycleCheckBluetooth(this, getClass().getName()));
         getLifecycle().addObserver(new LifeCycleDemo(this, getClass().getName()));
 

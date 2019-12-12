@@ -1,6 +1,7 @@
 package edu.alsjava.courses.demoluis.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,10 +19,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.List;
 
 import edu.alsjava.courses.demoluis.R;
+import edu.alsjava.courses.demoluis.model.BigData;
 import edu.alsjava.courses.demoluis.model.Example;
 import edu.alsjava.courses.demoluis.model.RetrieveDemo;
 import edu.alsjava.courses.demoluis.model.network.request.DemoRequest;
 import edu.alsjava.courses.demoluis.tasks.DemoTask;
+import edu.alsjava.courses.demoluis.ui.ImageViewerActivity;
 
 /**
  * Created by aluis on 11/26/19.
@@ -102,15 +106,33 @@ public class LazyDemoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private AppCompatTextView tvName;
         private AppCompatImageView ivImage;
 
+        private ActivityOptionsCompat activityOptionsCompat;
+
         LazyDemoViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             ivImage = itemView.findViewById(R.id.ivImage);
+
+            activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, this.ivImage, "together");
         }
 
         void visualize() {
             tvName.setText(currentItem.getName());
             Glide.with(activity).load(currentItem.getImage()).diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.ic_autorenew_black_24dp).into(ivImage);
+
+            BigData bigData = new BigData();
+            bigData.setName("Aluis");
+            bigData.setDescription("One Java developer and Android");
+            bigData.setAge(99);
+            bigData.setRole("Senior Java Developer");
+            bigData.setTshirtSize("M");
+
+            Intent intent = new Intent(activity, ImageViewerActivity.class);
+
+            intent.putExtra(ImageViewerActivity.IMAGE_URL_EXTRA, currentItem.getImage());
+            intent.putExtra(ImageViewerActivity.BIG_DATA_EXTRA, bigData);
+
+            activity.startActivity(intent, activityOptionsCompat.toBundle());
         }
     }
 }

@@ -9,7 +9,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import edu.alsjava.courses.demoluis.domain.Author;
 import edu.alsjava.courses.demoluis.domain.Book;
 
 /**

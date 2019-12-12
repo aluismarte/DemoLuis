@@ -1,9 +1,12 @@
 package edu.alsjava.courses.demoluis.ui;
 
+import android.animation.ObjectAnimator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.XmlResourceParser;
+import android.graphics.Path;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -59,7 +62,10 @@ public class AppActivity extends AppCompatActivity implements Operation {
         new LoadAPNG2(this).execute();
 
         AppCompatButton btnGlide = findViewById(R.id.btnGlide);
-        btnGlide.setOnClickListener(view -> startActivity(new Intent(this, GlideActivity.class)));
+        btnGlide.setOnClickListener(view -> {
+            Intent intent = new Intent(this, GlideActivity.class);
+            startActivity(intent);
+        });
 
         AppCompatButton btnLoad = findViewById(R.id.btnLoad);
         btnLoad.setOnClickListener(view -> loadData());

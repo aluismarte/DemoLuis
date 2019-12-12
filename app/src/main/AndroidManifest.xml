@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -18,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.ImageViewerActivity"></activity>
         <activity android:name=".ui.GlideActivity" />
         <activity android:name=".ui.AppActivity" />
         <activity android:name=".ui.LoginActivity" />
@@ -31,11 +31,12 @@
             </intent-filter>
         </activity>
 
-
-        <receiver android:name=".receivers.MyPrettyReceiver"  android:exported="true"
+        <receiver
+            android:name=".receivers.MyPrettyReceiver"
+            android:exported="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="lalala.my.pretty.action"/>
+                <action android:name="lalala.my.pretty.action" />
             </intent-filter>
         </receiver>
     </application>

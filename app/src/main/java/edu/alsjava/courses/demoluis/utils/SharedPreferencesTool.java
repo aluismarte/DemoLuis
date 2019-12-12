@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 /**
  * Elemento encargado de manejar las prefencias internas de la aplicacion
- *
+ * <p>
  * Created by aluis on 11/20/19.
  */
 public class SharedPreferencesTool {
