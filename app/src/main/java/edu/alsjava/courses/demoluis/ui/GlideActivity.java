@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -45,12 +46,6 @@ public class GlideActivity extends AppCompatActivity {
 
         Glide.with(this).asGif().load(R.raw.cat).into(ivGif);
         ivGif.setVisibility(View.VISIBLE);
-
-        AuthorRepository authorRepository = Constants.get().demoLuisDB.getAuthorRepository();
-        Author author = new Author();
-        author.setName("Steven King");
-        author.setDescription("King of Horror");
-        authorRepository.insert(author);
 
         int dayOfWeek = 1; // We dont know!
         Toast.makeText(this, "Day: " + dayOfWeek, Toast.LENGTH_SHORT).show();
@@ -100,10 +95,32 @@ public class GlideActivity extends AppCompatActivity {
                 }
             });
         }
+
+        new InsertOnDB().execute();
     }
 
     private void printDat(@Seasons.Season int day) {
         Toast.makeText(this, "Day: " + day, Toast.LENGTH_SHORT).show();
+    }
 
+    public static class InsertOnDB extends AsyncTask<Void, Void, Void> {
+
+        InsertOnDB() {
+        }
+
+        @Override
+        protected void onPostExecute(Void data) {
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // No podemos hacer esto en el hilo principal, siempre debe ser un hilo, sino explota
+            AuthorRepository authorRepository = Constants.get().demoLuisDB.getAuthorRepository();
+            Author author = new Author();
+            author.setName("Steven King");
+            author.setDescription("King of Horror");
+            authorRepository.insert(author);
+            return null;
+        }
     }
 }

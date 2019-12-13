@@ -106,33 +106,34 @@ public class LazyDemoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private AppCompatTextView tvName;
         private AppCompatImageView ivImage;
 
-        private ActivityOptionsCompat activityOptionsCompat;
-
         LazyDemoViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             ivImage = itemView.findViewById(R.id.ivImage);
 
-            activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, this.ivImage, "together");
+
+            itemView.setOnClickListener(v -> {
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, this.ivImage, "together");
+
+                BigData bigData = new BigData();
+                bigData.setName("Aluis");
+                bigData.setDescription("One Java developer and Android");
+                bigData.setAge(99);
+                bigData.setRole("Senior Java Developer");
+                bigData.setTshirtSize("M");
+
+                Intent intent = new Intent(activity, ImageViewerActivity.class);
+
+                intent.putExtra(ImageViewerActivity.IMAGE_URL_EXTRA, currentItem.getImage());
+                intent.putExtra(ImageViewerActivity.BIG_DATA_EXTRA, bigData);
+
+                activity.startActivity(intent, activityOptionsCompat.toBundle());
+            });
         }
 
         void visualize() {
             tvName.setText(currentItem.getName());
             Glide.with(activity).load(currentItem.getImage()).diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.ic_autorenew_black_24dp).into(ivImage);
-
-            BigData bigData = new BigData();
-            bigData.setName("Aluis");
-            bigData.setDescription("One Java developer and Android");
-            bigData.setAge(99);
-            bigData.setRole("Senior Java Developer");
-            bigData.setTshirtSize("M");
-
-            Intent intent = new Intent(activity, ImageViewerActivity.class);
-
-            intent.putExtra(ImageViewerActivity.IMAGE_URL_EXTRA, currentItem.getImage());
-            intent.putExtra(ImageViewerActivity.BIG_DATA_EXTRA, bigData);
-
-            activity.startActivity(intent, activityOptionsCompat.toBundle());
         }
     }
 }
