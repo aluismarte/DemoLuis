@@ -5,7 +5,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.XmlResourceParser;
 import android.graphics.Path;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -47,6 +46,8 @@ public class AppActivity extends AppCompatActivity implements Operation {
     private AppCompatTextView tvLoading;
     private AppCompatImageView ivLoading;
 
+    private ObjectAnimator animator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +81,17 @@ public class AppActivity extends AppCompatActivity implements Operation {
             }
         });
 
+
         AppCompatButton btnLoad = findViewById(R.id.btnLoad);
-        btnLoad.setOnClickListener(view -> loadData());
+        btnLoad.setOnClickListener(view -> {
+            animator.start();
+            loadData();
+        });
+
+        Path path = new Path();
+        path.arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true);
+        animator = ObjectAnimator.ofFloat(btnLoad, View.X, View.Y, path);
+        animator.setDuration(2000);
 
         RecyclerView rvExample = findViewById(R.id.rvExample);
         rvExample.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
