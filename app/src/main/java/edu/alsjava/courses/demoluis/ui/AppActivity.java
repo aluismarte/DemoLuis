@@ -9,6 +9,8 @@ import android.graphics.Path;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -47,6 +49,7 @@ public class AppActivity extends AppCompatActivity implements Operation {
     private AppCompatImageView ivLoading;
 
     private ObjectAnimator animator;
+    private Animation rotateAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +84,12 @@ public class AppActivity extends AppCompatActivity implements Operation {
             }
         });
 
+        rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
 
         AppCompatButton btnLoad = findViewById(R.id.btnLoad);
         btnLoad.setOnClickListener(view -> {
             animator.start();
+            btnLoad.startAnimation(rotateAnimation);
             loadData();
         });
 
