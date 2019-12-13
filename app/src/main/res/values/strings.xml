@@ -24,4 +24,5 @@
     <string name="read_contacts">Read Contacts</string>
 
     <string name="network_state">Network State</string>
+    <string name="alarm">Alarm</string>
 </resources>

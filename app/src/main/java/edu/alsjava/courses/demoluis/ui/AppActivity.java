@@ -67,6 +67,19 @@ public class AppActivity extends AppCompatActivity implements Operation {
             startActivity(intent);
         });
 
+        AppCompatButton btnAlarm = findViewById(R.id.btnAlarm);
+        btnAlarm.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AppActivity.class);
+            intent.putExtra("data", "Hola, soy la alarma");
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 15000, intent, 0);
+
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (alarmManager != null) {
+                alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, 20000, pendingIntent);
+            }
+        });
+
         AppCompatButton btnLoad = findViewById(R.id.btnLoad);
         btnLoad.setOnClickListener(view -> loadData());
 
@@ -76,16 +89,6 @@ public class AppActivity extends AppCompatActivity implements Operation {
         rvExample.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         new DemoTask(this, new DemoRequest(0), demoAdapter).execute();
-
-        Intent intent = new Intent(this, AppActivity.class);
-        intent.putExtra("data", "Hola, soy la alarma");
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 15000, intent, 0);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, 20000, pendingIntent);
-        }
     }
 
     private void loadData() {

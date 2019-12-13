@@ -19,4 +19,5 @@
     <string name="slide_intro_1_description">Implementa las ultima tecnologías en seguridad</string>
     <string name="slide_intro_1_title">Seguro</string>
     <string name="network_state">Estado de la red</string>
+    <string name="alarm">Alarm</string>
 </resources>

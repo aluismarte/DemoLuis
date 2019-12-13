@@ -20,6 +20,13 @@
         android:layout_gravity="center"
         android:text="@string/load" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/alarm" />
+
     <include layout="@layout/lazy_load" />
 
     <androidx.recyclerview.widget.RecyclerView
